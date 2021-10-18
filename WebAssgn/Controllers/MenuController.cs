@@ -32,19 +32,21 @@ namespace WebAssgn.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateEmployee(int id, Chaat C
+        public async Task<IActionResult> UpdateChaat(int id, Chaat C
             )
         {
-
-            db.Entry(C).State = EntityState.Modified;
-            await db.SaveChangesAsync();
-            return Ok();
+            using (var db = new chaatsContext())
+            {
+                db.Entry(C).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return Ok(C);
+            }
         }
         [HttpDelete]
-        public async Task<IActionResult> DeleteChaat(int Cid)
+        public async Task<IActionResult> DeleteChaat(int id)
         {
-            Chaat C = db.Chaats.Find(Cid);
-            db.Chaats.Remove(C);
+            //Chaat C = ;
+            db.Chaats.Remove(db.Chaats.Find(id));
             await db.SaveChangesAsync();
             return Ok();
         }
@@ -68,14 +70,16 @@ namespace WebAssgn.Controllers
         [Route("drinks")]
         public async Task<IActionResult> UpdateDrink(int id, Drink d)
         {
-
-            db.Entry(d).State = EntityState.Modified;
-            await db.SaveChangesAsync();
-            return Ok();
+            using (var db = new chaatsContext())
+            {
+                db.Entry(d).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+                return Ok();
+            }
         }
         [HttpDelete]
         [Route("drinks")]
-        public async Task<IActionResult> DeleteEmployee(int id)
+        public async Task<IActionResult> DeleteDrink(int id)
         {
             Drink d = db.Drinks.Find(id);
             db.Drinks.Remove(d);

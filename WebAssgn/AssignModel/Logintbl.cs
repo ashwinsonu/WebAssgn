@@ -9,12 +9,5 @@ namespace WebAssgn.AssignModel
     {
         public string Username { get; set; }
         public string Password { get; set; }
-
-        public Logintbl()
-        {
-            Username = "name";
-            Password = "pass";
-
-        }
     }
 }
